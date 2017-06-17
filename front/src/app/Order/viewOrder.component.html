@@ -1,0 +1,97 @@
+<div class="col-md-12">
+    <!-- Conteent-->
+    <h4 class="tableheader">categories</h4>
+
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordred ">
+            <thead>
+
+
+                <th>User Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Quanity</th>
+
+            </thead>
+            <tbody>
+                <!--<tr *ngFor="let order of ordersDto; let rowIndex = index">
+                    <td>{{order.userName}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.email}}</td>
+                    <td>{{order.phone}}</td>
+                    <td>{{order.quanity}}</td>
+                </tr>-->
+                <tr *ngFor="let order of ordersDto; let rowIndex = index; ">
+                    <td>{{order.userName}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.email}}</td>
+                    <td>{{order.phone}}</td>
+                    <td>{{order.quanity}}</td>
+                    <!--<td>
+                        <ul>
+                            <li *ngFor="let key of order.attributes|keys">
+
+                                {{key.key}}
+
+                                <ol *ngFor="let value of key.value">
+                                    <li> {{value}} </li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </td>-->
+
+                    <td>
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" (click)='showAttributes(rowIndex)'>Show Attributes</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="clearfix">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <th>Attributes</th>
+                    </thead>
+                    <tbody>
+                        <!--<tr>
+                            <td>-->
+                                <!--<ul>-->
+                                    <!--{{selectedOrder}}-->
+                                    <tr *ngFor="let key of selectedOrder.attributes|keys">
+                                        <td>{{key.key}}</td>
+                                      
+                                      <td>  <ul *ngFor="let value of key.value">
+                                            <li> {{value}} </li>
+                                        </ul>
+                                      </td>
+                                    <!--</li>
+                                </ul>-->
+                            <!--</td>
+                        </tr>-->
+                    </tbody>
+
+
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

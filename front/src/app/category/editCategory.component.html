@@ -1,0 +1,11 @@
+<h1>add category</h1>
+{{category.name}}
+<form (ngSubmit)="save()" method="GET" action="" #f="ngForm">
+    <label for='name'>name</label>
+    <input type="text" id="name" [(ngModel)]="category.name" name='name' required/>
+    <label for='name'>type</label>
+    <input type="text" id="type" [(ngModel)]="category.type" name='type' required/>
+    <!--<label for='name'>description</label>-->
+    <!--<input type="text" id="description" [(ngModel)]='category.description' required/>-->
+    <button type="submit">add</button>
+</form>

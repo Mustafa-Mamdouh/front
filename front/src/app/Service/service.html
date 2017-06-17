@@ -1,0 +1,256 @@
+<div class="col-md-10 col-md-offset-1">
+    <table>
+        <tr>
+            <td>
+                <select class="form-control" (change)="setSelectedService($event)">
+        <option value="-1">Pick Service</option>
+         <option  *ngFor="let service of services,let i = index" [value]="i">{{service.name}}</option>
+    </select>
+            </td>
+            <td>
+                <button (click)="setViewBoolean()" type="button" class="btn btn-success btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> View
+        </button>
+            </td>
+            <td>
+                <button (click)="addBtnService()" type="button" class="btn btn-add btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Add
+        </button>
+            </td>
+            <td>
+                <button (click)="prepareEditService()" type="button" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon glyphicon-pencil"></span>Edit
+           </button>
+
+            </td>
+            <td>
+                <button (click)="deleteService()" type="button" class="btn btn-danger btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Delete
+ </button>
+
+            </td>
+        </tr>
+    </table>
+
+    <form (ngSubmit)="addService()">
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td><input [disabled]="!isView" type="text" name="name" class="form-control" [(ngModel)]="toBeSaved.name" required/></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td><input [disabled]="!isView" type="text" name="type" class="form-control" [(ngModel)]="toBeSaved.type" required/></td>
+            </tr>
+            <tr>
+                <td>Active</td>
+                <td><input [disabled]="!isView" type="checkbox" name="radio" class="form-control" [(ngModel)]="toBeSaved.isactive">
+                </td>
+            </tr>
+            <tr>
+                <td>Termination Fees</td>
+                <td><input [disabled]="!isView" type="text" name="terminationFees" class="form-control" [(ngModel)]="toBeSaved.terminationFees"
+                        required/></td>
+            </tr>
+            <tr>
+                <td>Suspension Fees</td>
+                <td><input [disabled]="!isView" type="text" name="suspensionFees" class="form-control" [(ngModel)]="toBeSaved.suspensionFees"
+                        required/></td>
+            </tr>
+            <tr>
+                <td>Delivery Fees</td>
+                <td><input [disabled]="!isView" type="text" name="deliveryFees" class="form-control" [(ngModel)]="toBeSaved.deliveryFees"
+                        required/></td>
+            </tr>
+            <tr>
+                <td>Delivery Days</td>
+                <td><input [disabled]="!isView" type="text" name="type" class="form-control" [(ngModel)]="toBeSaved.deliveryDays"
+                        required/></td>
+            </tr>
+
+
+        </table>
+
+
+        <button [disabled]="!isView" (click)="setCatgories()" type="button" class="btn btn-primary pull-right" data-toggle="modal"
+            data-target="#add">Add Component</button>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Component Name
+                    </th>
+                    <th>
+                        Component Description
+                    </th>
+                    <th><em [hidden]="!isView" class="fa fa-cog"></em></th>
+                </tr>
+                <tr *ngFor="let comp of serviceComponetList">
+                    <td>
+                        {{comp.name}}
+                    </td>
+                    <td>
+                        {{comp.description}}
+                    </td>
+                    <td> <em [hidden]="!isView" [id]="comp.id" (click)="removeFromService($event)" class="fa fa-trash"></em></td>
+                </tr>
+            </thead>
+        </table>
+
+
+        <button [disabled]="!isView" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addAttribute">Add Attribute</button>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Attribute Name
+                    </th>
+                    <th [hidden]="!isView"><em class="fa fa-cog"></em></th>
+                </tr>
+                <tr *ngFor="let attr of serviceAttributes,let i of index">
+                    <td>
+                        {{attr.name}}
+                    </td>
+                    <td [hidden]="!isView"> <em [id]="i" (click)="removeAttrFromService($event)" class="fa fa-trash"></em></td>
+                </tr>
+            </thead>
+        </table>
+
+
+        <button [disabled]="!isView" type="submit" class="btn btn-primary">Save</button>
+
+    </form>
+
+
+</div>
+<!--Modal Add comp-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- /.modal-Header -->
+                <h1 class="text-primary">Choose Component</h1>
+                <!-- /.modal-header end -->
+            </div>
+            <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>
+                            Category
+                        </td>
+                        <td>
+                            <select class="form-control" (change)="onChange($event.target.value)">
+              <option value="Pick One">Pick One</option>
+              <option  *ngFor="let cat of catgories" [value]="cat.id">{{cat.name}}</option>
+          </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Component
+                        </td>
+                        <td>
+                            <select class="form-control" (change)="onChangeSelectComponent($event.target.value)">
+                                <option value="Pick One">Pick One</option>
+              <option  *ngFor="let component of candidatecomp" [value]="component.id">{{component.name}}</option>
+          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Component Name</td>
+                        <td>{{candycomp.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Component Description</td>
+                        <td>{{candycomp.description}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Component non recursive cost</td>
+                        <td>{{candycomp.nrc}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Component monthly recursive cost</td>
+                        <td>{{candycomp.mrc}}</td>
+                    </tr>
+                </table>
+                <button [disabled]="!this.candycomp.id" type="submit" (click)="addComponentToService()" data-dismiss="modal" class="btn btn-primary">Save</button>
+                <button [hidden]="true" data-dismiss="modal" #CompModal></button>
+                <!-- /.modal-body end -->
+
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <!-- /.modal-footer -->
+            <!-- /.modal-footer end -->
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!--Add component ENDING-->
+
+
+<!--Modal Add Atribute-->
+<div class="modal fade" id="addAttribute" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- /.modal-Header -->
+                <h1 class="text-primary">Add Attribute</h1>
+                <!-- /.modal-header end -->
+            </div>
+            <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>Attribute Name</td>
+                        <td><input type="text" name="active" class="form-control" [(ngModel)]="attributeEdit.name"></td>
+                    </tr>
+                    <tr>
+                        <td>Mandatory</td>
+                        <td><input type="checkbox" name="mandatory" class="form-control" [(ngModel)]="attributeEdit.Mandatory">
+                        </td>
+                    </tr>
+
+
+                </table>
+                <button (click)="addAttributeValue()" class="btn btn-primary">Add  Value</button>
+
+                <div *ngFor="let input of attributeValueEdit,let i = index">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <input class="form-control" [(ngModel)]="input.value">
+
+                            </td>
+                            <td>
+                                <em class="fa fa-trash" [id]="i" (click)="removeAttribute($event)"></em>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <button [disabled]="!this.attributeEdit.name" type="submit" (click)="addAttributeToService()" data-dismiss="modal" class="btn btn-primary">ADD</button>
+                <button [hidden]="true" data-dismiss="modal" #CompModal2></button>
+
+                <!-- /.modal-body end -->
+
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <!-- /.modal-footer -->
+            <!-- /.modal-footer end -->
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!--Add Attribute ENDING-->

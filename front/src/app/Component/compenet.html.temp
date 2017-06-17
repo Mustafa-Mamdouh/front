@@ -1,0 +1,167 @@
+<div class="col-md-12">
+    <!-- Conteent-->
+    <h4 class="tableheader">Components</h4>
+
+    <p data-placement="top" data-toggle="tooltip" title="Add"><button class="btn btn-primary btn-xlg pull-right btnhead" data-title="Edit" data-toggle="modal" data-target="#ADD"><span class="glyphicon glyphicon-plus-sign"></span></button></p>
+
+    <div class="table-responsive">
+
+
+        <table id="mytable" class="table table-bordred ">
+
+            <thead>
+
+                <th>Component Name</th>
+                <th>Component Description</th>
+                <th>mrc</th>
+                <th>nrc</th>
+                <th>Edit</th>
+
+                <th>Delete</th>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let component of components">
+                    <td>{{component.name}}</td>
+                    <td>{{component.description}}</td>
+                    <td>{{component.mrc}}</td>
+                    <td>{{component.nrc}}</td>
+                    <td>
+                        <p  data-placement="top"  data-toggle="tooltip" title="Edit"><button  (click)="prepareEdit($event)" [id]="component.id" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
+                                data-target="#edit"><span (click)="prepareEdit($event)" [id]="component.id"  class="glyphicon glyphicon-pencil"></span></button></p>
+                    </td>
+                    <td>
+                        <p  [id]="component.id"  (click)="setDeletedID($event)" data-placement="top" data-toggle="tooltip" title="Delete"><button [id]="component.id"  (click)="setDeletedID($event)" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
+                                data-target="#delete"><span [id]="component.id"  (click)="setDeletedID($event)" class="glyphicon glyphicon-trash"></span></button></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="clearfix">
+        </div>
+    </div>
+</div>
+
+<!--Modal ADD-->
+<div class="modal fade" id="ADD" tabindex="-1" role="dialog" aria-labelledby="ADD" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- /.modal-Header -->
+                <h1 class="text-primary">Add Component</h1>
+                <!-- /.modal-header end -->
+            </div>
+            <div class="modal-body">
+                <!-- /.modal-body -->
+                <form   (ngSubmit)="addComponent()">
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td><input class="form-control"  name="name" type="text" class="form-control" [(ngModel)]="toBeSaved.name" required/></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><input type="text" name="description" class="form-control" [(ngModel)]="toBeSaved.description" required/></td>
+                    </tr>
+                    <tr>
+                        <td>NRC</td>
+                        <td><input  type="text" name="nrc" class="form-control" [(ngModel)]="toBeSaved.nrc"  required/></td>
+                    </tr>
+                    <tr>
+                        <td>MRC</td>
+                        <td><input type="text" name="mrc" class="form-control" [(ngModel)]="toBeSaved.mrc" required/></td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary" >Save</button>
+                <button  type="button" class="btn btn-default hidden" data-dismiss="modal" #closeBtn>Cancel</button>
+           </form>
+             <!-- /.modal-body end -->
+
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <!-- /.modal-footer -->
+            <!-- /.modal-footer end -->
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!--ADD ENDING-->
+
+
+<!--Modal Edit-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- /.modal-Header -->
+                <h1 class="text-primary">Edit Component</h1>
+                <!-- /.modal-header end -->
+            </div>
+            <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td><input class="form-control"  type="text" class="form-control" [(ngModel)]="toBeSaved.name" required/></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><input type="text" class="form-control" [(ngModel)]="toBeSaved.description" required/></td>
+                    </tr>
+                    <tr>
+                        <td>NRC</td>
+                        <td><input type="text" class="form-control" [(ngModel)]="toBeSaved.nrc"  required/></td>
+                    </tr>
+                    <tr>
+                        <td>MRC</td>
+                        <td><input type="text" class="form-control" [(ngModel)]="toBeSaved.mrc" required/></td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary" (click)="editComponent()">Save</button>
+                <button  type="button" class="btn btn-default hidden" data-dismiss="modal" #closeBtn2>Cancel</button>
+                <!-- /.modal-body end -->
+
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <!-- /.modal-footer -->
+            <!-- /.modal-footer end -->
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!--EDIR ENDING-->
+
+<!--Modal Dekete-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- /.modal-Header -->
+                <h1 class="text-danger">Are you sure You want to Delete Component?</h1>
+                <!-- /.modal-header end -->
+            </div>
+            <div class="modal-body">
+                <!-- /.modal-body -->
+                <button type="button" class="btn btn-default" data-dismiss="modal" #closeBtn3>Cancel</button>
+                <a (click)="deleteComponent()" class="btn btn-danger btn-ok">Delete</a>
+
+                <!-- /.modal-body end -->
+
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <!-- /.modal-footer -->
+            <!-- /.modal-footer end -->
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!--Delete ENDING-->

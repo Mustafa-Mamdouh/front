@@ -1,0 +1,37 @@
+{
+    "name": "9",
+    "type": "9",
+    "isactive": "9",
+    "terminationFees": "9",
+    "suspensionFees": "9",
+    "deliveryFees": "9",
+    "deliveryDays": "9",
+    "attributeCollection": [
+        {
+            "name": "asdasd",
+            "Mandatory": true,
+            "attributeValue": [
+                {
+                    "value": "a"
+                }
+            ],
+            "type": "Single"
+        }
+    ],
+    "componentCollection": [
+        {
+            "id": 10,
+            "name": "stestts",
+            "description": "8",
+            "nrc": 8,
+            "mrc": 8,
+            "serviceCollection": null,
+            "categoryId": {
+                "id": 1,
+                "name": "ss",
+                "type": null,
+                "componentCollection": null
+            }
+        }
+    ]
+}

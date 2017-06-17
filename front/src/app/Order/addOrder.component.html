@@ -1,0 +1,65 @@
+
+<div id="signupbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Order</div>
+        </div>
+        <div class="panel-body">
+
+            <form class="form-horizontal"  (ngSubmit)='addOrder(f)' #f>
+                <div id="div_id_username" class="form-group required">
+                    <label for="id_username" class="control-label col-md-4  requiredField"> Username<span class="asteriskField">*</span> </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md  textinput textInput form-control" id="id_username" maxlength="30" name="username" placeholder="username"
+                            style="margin-bottom: 10px" type="text"  required="true" [(ngModel)]='order.userName'/>
+                    </div>
+                </div>
+                <div id="div_id_email" class="form-group required">
+                    <label for="id_email" class="control-label col-md-4  requiredField"> E-mail<span class="asteriskField">*</span> </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md emailinput form-control" id="id_email" name="email" placeholder="Your current email address" style="margin-bottom: 10px"
+                            type="email"  required [(ngModel)]='order.email'/>
+                    </div>
+                </div>
+                <div id="div_id_location" class="form-group required">
+                    <label for="id_location" class="control-label col-md-4  requiredField"> Address<span class="asteriskField">*</span> </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md textinput textInput form-control" id="id_location" name="Address" placeholder="Your Pincode and City"
+                            style="margin-bottom: 10px" type="text"  required [(ngModel)]='order.address'/>
+                    </div>
+                </div>
+                <div id="div_id_Phone" class="form-group required">
+                    <label for="id_location" class="control-label col-md-4  requiredField"> Phone<span class="asteriskField">*</span> </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md textinput textInput form-control" id="id_phone" name="Phone" placeholder=""
+                            style="margin-bottom: 10px" type="text"  required [(ngModel)]='order.phone' />
+                    </div>
+                </div>
+                <div id="div_id_quantity" class="form-group required">
+                    <label for="id_location" class="control-label col-md-4  requiredField"> quantity<span class="asteriskField">*</span> </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md textinput textInput form-control" id="id_quntity" name="Address" placeholder="0"
+                            style="margin-bottom: 10px" type="number" min="0"  required [(ngModel)]='order.quantity'/>
+                    </div>
+                </div>
+
+                      
+
+
+                <div class="form-group">
+                    <div class="aab controls col-md-4 "></div>
+                    <div class="controls col-md-8 ">
+                        <input type="button" name="Signup" value="submit" class="btn btn-primary btn btn-info" id="submit-id-signup" (click)="addOrder()" />                        
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .control-label {
+        color: black;
+    }
+</style>
