@@ -11,7 +11,10 @@ import { ServiceCategoryComponent } from '../LookupTables/ServiceCategory.Compon
 import { EmployeeDiscountComponent } from '../LookupTables/EmployeeDiscount.Component';
 import { ServiceComponent } from '../Service/service.component'
 import { HomeComponent } from '../home/home.component'
-
+import{BandwidthComponent} from '../Bandwidth/bandwidth.component'
+import{DiscountCategoryComponent} from '../DiscountCategory/discountCategory.component'
+import{PriceBasisComponent} from'../priceBasis/priceBasis.component';
+import{ServiceTypeComponent} from'../ServiceType/serviceType.component';
 const APP_ROUTE: Routes = [
     { path: '', component: HomeComponent },
     { path: 'addCategory', component: AddCategory },
@@ -21,11 +24,9 @@ const APP_ROUTE: Routes = [
     { path: 'component/:id', component: ComponentComponent },
     { path: 'category', component: CategoryComponent },
     { path: 'service', component: ServiceComponent },
-    { path: 'deliveryType', component: DeliveryTypeComponent },
-    { path: 'ServiceCategory', component: ServiceCategoryComponent },
-    { path: 'EmployeeDiscount', component: EmployeeDiscountComponent }
-
-
+ { path: 'bandwidth', component: BandwidthComponent },
+    { path: 'discountCategory', component: DiscountCategoryComponent },
+    { path: 'pricebasis', component: PriceBasisComponent },
 ];
 @NgModule({
     imports: [
