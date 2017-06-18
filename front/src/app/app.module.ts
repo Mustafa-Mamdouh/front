@@ -24,13 +24,15 @@ import { DiscountCategoryComponent } from './DiscountCategory/discountCategory.c
 import { DiscountCategoryService } from './DiscountCategory/discountCategory.service'
 import { PriceBasisComponent } from './priceBasis/priceBasis.component'
 import { PriceBasisService } from './priceBasis/priceBasis.service'
+import { ServiceTypeComponent } from './ServiceType/serviceType.component'
+import { ServiceTypeService } from './ServiceType/serviceType.service'
 @NgModule({
   providers: [CategoryService, OrderService, ComponentService, HomeService, ServiceService, BandwidthService, DiscountCategoryService,
-    PriceBasisService],
+    PriceBasisService, ServiceTypeService],
   imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
   declarations: [AppComponent, CategoryComponent, AddCategory, EditCategoryComponent,
     AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent, ServiceComponent, BandwidthComponent,
-    DiscountCategoryComponent, PriceBasisComponent],
+    DiscountCategoryComponent, PriceBasisComponent, ServiceTypeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

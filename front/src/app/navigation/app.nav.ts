@@ -11,7 +11,8 @@ import {ServiceComponent} from'../Service/service.component'
 import { HomeComponent } from '../home/home.component'
 import{BandwidthComponent} from '../Bandwidth/bandwidth.component'
 import{DiscountCategoryComponent} from '../DiscountCategory/discountCategory.component'
-import{PriceBasisComponent} from'../priceBasis/priceBasis.component'
+import{PriceBasisComponent} from'../priceBasis/priceBasis.component';
+import{ServiceTypeComponent} from'../ServiceType/serviceType.component';
 const APP_ROUTE: Routes = [
     { path: '', component: HomeComponent },
     { path: 'addCategory', component: AddCategory },
@@ -23,7 +24,8 @@ const APP_ROUTE: Routes = [
     { path: 'service', component: ServiceComponent },
     { path: 'bandwidth', component: BandwidthComponent },
     { path: 'discountCategory', component: DiscountCategoryComponent },
-    { path: 'pricebasis', component: PriceBasisComponent }
+    { path: 'pricebasis', component: PriceBasisComponent },
+    { path: 'serviceType', component: ServiceTypeComponent }
 ];
 @NgModule({
     imports: [
