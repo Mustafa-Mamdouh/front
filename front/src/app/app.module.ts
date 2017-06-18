@@ -14,15 +14,23 @@ import { ViewOrder } from './Order/viewOrder.component'
 import { KeysPipe } from './Order/key.pipe'
 import { ComponentService } from './Component/component.service';
 import { ComponentComponent } from './Component/component.component';
-import{ServiceComponent} from'./Service/service.component'
+import { ServiceComponent } from './Service/service.component'
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
-import{ServiceService} from'./Service/service.service'
+import { ServiceService } from './Service/service.service'
+import { BandwidthComponent } from './Bandwidth/bandwidth.component'
+import { BandwidthService } from './Bandwidth/bandwidth.service'
+import { DiscountCategoryComponent } from './DiscountCategory/discountCategory.component'
+import { DiscountCategoryService } from './DiscountCategory/discountCategory.service'
+import { PriceBasisComponent } from './priceBasis/priceBasis.component'
+import { PriceBasisService } from './priceBasis/priceBasis.service'
 @NgModule({
-  providers: [CategoryService, OrderService, ComponentService, HomeService,ServiceService],
+  providers: [CategoryService, OrderService, ComponentService, HomeService, ServiceService, BandwidthService, DiscountCategoryService,
+    PriceBasisService],
   imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
   declarations: [AppComponent, CategoryComponent, AddCategory, EditCategoryComponent,
-    AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent,ServiceComponent],
+    AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent, ServiceComponent, BandwidthComponent,
+    DiscountCategoryComponent, PriceBasisComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
