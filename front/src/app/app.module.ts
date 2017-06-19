@@ -14,25 +14,45 @@ import { ViewOrder } from './Order/viewOrder.component'
 import { KeysPipe } from './Order/key.pipe'
 import { ComponentService } from './Component/component.service';
 import { ComponentComponent } from './Component/component.component';
-import { ServiceComponent } from './Service/service.component'
+import { LookupService } from './LookupTables/Lookup.service';
+import { DeliveryTypeComponent } from './LookupTables/DeliveryType.component';
+import { ServiceCategoryComponent } from './LookupTables/ServiceCategory.Component';
+import { EmployeeDiscountComponent } from './LookupTables/EmployeeDiscount.Component';
+
+
+//Yasmeen
+import { DownloadTypeComponent } from "./DownloadType/DownloadType.component";
+import { DownloadTypeService } from "./DownloadType/downloadType.service";
+import { CancellationReasonComponent } from "./CancelationReason/CancelationReason.component";
+import { CancelationReasonService } from "./CancelationReason/CancelationReason.service";
+import { SellingTypeService } from "./SellingType/SellingType.service";
+import { SellingTypeComponent } from "./SellingType/SellingType.component";
+
+//dah ana
+import{ServiceComponent} from'./Service/service.component'
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
-import { ServiceService } from './Service/service.service'
+import{ServiceService} from'./Service/service.service'
+
+//Sherif 
 import { BandwidthComponent } from './Bandwidth/bandwidth.component'
-import { BandwidthService } from './Bandwidth/bandwidth.service'
 import { DiscountCategoryComponent } from './DiscountCategory/discountCategory.component'
+import { PriceBasisComponent } from './priceBasis/priceBasis.component';
+import { ServiceTypeComponent } from './ServiceType/serviceType.component';
+import { BandwidthService } from './Bandwidth/bandwidth.service'
 import { DiscountCategoryService } from './DiscountCategory/discountCategory.service'
-import { PriceBasisComponent } from './priceBasis/priceBasis.component'
-import { PriceBasisService } from './priceBasis/priceBasis.service'
-import { ServiceTypeComponent } from './ServiceType/serviceType.component'
-import { ServiceTypeService } from './ServiceType/serviceType.service'
+import { PriceBasisService } from './priceBasis/priceBasis.service';
+import { ServiceTypeService } from './ServiceType/serviceType.service';
+
 @NgModule({
-  providers: [CategoryService, OrderService, ComponentService, HomeService, ServiceService, BandwidthService, DiscountCategoryService,
-    PriceBasisService, ServiceTypeService],
+  providers: [CategoryService, OrderService, ComponentService, HomeService,ServiceService,LookupService,
+  DownloadTypeService,CancelationReasonService,SellingTypeService,
+  BandwidthService,DiscountCategoryService,PriceBasisService,ServiceTypeService],
   imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
   declarations: [AppComponent, CategoryComponent, AddCategory, EditCategoryComponent,
-    AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent, ServiceComponent, BandwidthComponent,
-    DiscountCategoryComponent, PriceBasisComponent, ServiceTypeComponent],
+    AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent,ServiceComponent,DeliveryTypeComponent
+    ,ServiceCategoryComponent,EmployeeDiscountComponent,DownloadTypeComponent,CancellationReasonComponent,SellingTypeComponent,
+    BandwidthComponent,DiscountCategoryComponent,PriceBasisComponent,ServiceTypeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

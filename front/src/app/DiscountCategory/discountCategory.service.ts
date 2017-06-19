@@ -5,21 +5,22 @@ import 'rxjs/Observable';
 import { DiscountCategory } from './discountCategory.entity'
 @Injectable()
 export class DiscountCategoryService {
+    path: string = "http://localhost:8082/api/v1/" + "DiscountCategory/";
     constructor(private http: Http) { }
     getAll() {
-        return this.http.get('http://localhost:8082/DiscountCategory/all')
+        return this.http.get(this.path+'all')
             .map((response: Response) => response.json());
     }
     add(discountCategory: DiscountCategory) {
-        return this.http.post('http://localhost:8082/DiscountCategory/add', discountCategory)
+        return this.http.post(this.path+'add', discountCategory)
             .map((response: Response) => response.json());
     }
     update(discountCategory: DiscountCategory) {
-        return this.http.post('http://localhost:8082/DiscountCategory/update', discountCategory)
+        return this.http.post(this.path+'update', discountCategory)
             .map((response: Response) => response.json());
     }
     delete(id: number) {
-        return this.http.post('http://localhost:8082/DiscountCategory/delete/' + id, {})
+        return this.http.post(this.path+'delete/' + id, {})
             .map((response: Response) => response.json());
     }
 

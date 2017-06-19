@@ -142,14 +142,29 @@ export class ServiceComponent implements OnInit {
 
     addService() {
         //Prepare Service
+        this.toBeSaved.isactive = this.toBeSaved.isactive + "" == "true" ? "1" : "0";
         this.toBeSaved.attributeCollection = this.serviceAttributes;
         this.toBeSaved.componentCollection = this.serviceComponetList;
         //call add services
         //console.log(JSON.stringify(this.toBeSaved));
-        this.serviceService.addService(this.toBeSaved).subscribe();
-        this.serviceComponetList = new Array<IComponent>();
-        this.serviceAttributes = new Array<IAttribute>();
-        this.toBeSaved = new IService();
+        this.serviceService.addService(this.toBeSaved).subscribe(data => {
+            if (data.messageResponseObj.code == "000") {
+                //success
+                if (!this.services.filter(i => i.id == data.service.id)[0])
+                    this.services.push(data.service);
+                else{
+                   
+                }
+                this.serviceComponetList = new Array<IComponent>();
+                this.serviceAttributes = new Array<IAttribute>();
+                this.toBeSaved = new IService();
+
+            }
+            else {
+                //fail
+
+            }
+        });
     }
     components: IComponent[];
     catgories: ICategory[];
@@ -159,14 +174,11 @@ export class ServiceComponent implements OnInit {
             if (data.messageResponseObj.code == "000") {
                 //success
                 this.catgories = data.categories;
-                console.log(this.catgories);
             }
             else {
                 //fail
 
             }
-            console.log(data);
-
         });
     }
     setCatgories() {
