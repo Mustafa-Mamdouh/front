@@ -5,21 +5,23 @@ import 'rxjs/Observable';
 import { Bandwidth } from './bandwidth.entity';
 @Injectable()
 export class BandwidthService {
+        path:string="http://localhost:8082/api/v1/"+"Bandwidth/";
+
     constructor(private http: Http) { }
     getAll() {
-        return this.http.get('http://localhost:8082/Bandwidth/all')
+        return this.http.get(this.path+'all')
             .map((response: Response) => response.json());
     }
     addBandwidth(bandwidth: Bandwidth) {
-        return this.http.post('http://localhost:8082/Bandwidth/add', bandwidth)
+        return this.http.post(this.path+'add', bandwidth)
             .map((response:Response)=>response.json());
     }
     updateBandwidth(bandwidth: Bandwidth) {
-        return this.http.post('http://localhost:8082/Bandwidth/update', bandwidth)
+        return this.http.post(this.path+'update', bandwidth)
             .map((response:Response)=>response.json());
     }
     deleteBandwidth(id:number) {
-        return this.http.post('http://localhost:8082/Bandwidth/delete/'+id, {})
+        return this.http.post(this.path+'delete/'+id, {})
             .map((response:Response)=>response.json());
     }
 

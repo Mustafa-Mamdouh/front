@@ -5,22 +5,23 @@ import 'rxjs/Observable';
 import { PriceBasis } from './priceBasis.entity';
 @Injectable()
 export class PriceBasisService {
+    path: string = "http://localhost:8082/api/v1/" + "PriceBasis/";
 
     constructor(private http: Http) { }
     getall() {
-        return this.http.get('http://localhost:8082/PriceBasis/all')
+        return this.http.get(this.path+'all')
             .map((response: Response) => response.json());
     }
     add(priceBasis: PriceBasis) {
-        return this.http.post('http://localhost:8082/PriceBasis/add', priceBasis)
+        return this.http.post(this.path+'add', priceBasis)
             .map((response: Response) => response.json());
     }
     update(priceBasis: PriceBasis) {
-        return this.http.post('http://localhost:8082/PriceBasis/update', priceBasis)
+        return this.http.post(this.path+'update', priceBasis)
             .map((response: Response) => response.json());
     }
-    delete(id:number) {
-        return this.http.post('http://localhost:8082/PriceBasis/delete/'+id, {})
+    delete(id: number) {
+        return this.http.post(this.path+'delete/' + id, {})
             .map((response: Response) => response.json());
     }
 }

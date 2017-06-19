@@ -6,14 +6,15 @@ import 'rxjs/Observable';
 import { Category } from './category.entity';
 @Injectable()
 export class CategoryService implements ExceptionInformation {
+    path: string = "http://localhost:8082/api/v1/" + "category/";
 
     constructor(private http: Http) { }
     getAllCategoriesNames() {
-        return this.http.get('http://localhost:8082/category/allnames')
+        return this.http.get(this.path+'allnames')
             .map((response: Response) => response.json());
     }
     getAllCategories() {
-        return this.http.get('http://localhost:8082/category/all')
+        return this.http.get(this.path+'all')
             .map((response: Response) => {
                 let responseMessage = response.json();
                // console.log(responseMessage);
@@ -26,7 +27,7 @@ export class CategoryService implements ExceptionInformation {
 
 
     addCategory(category: Category) {
-        return this.http.post('http://localhost:8082/category/add', category).map(
+        return this.http.post(this.path+'add', category).map(
             (response: Response) => {
                 let responseMessage = response.json();
                 if (parseInt(responseMessage['messageResponseObj'].code) == 0)
@@ -43,15 +44,15 @@ export class CategoryService implements ExceptionInformation {
         header.append('Content-Type', 'application/json');
         let option: RequestOptions = new RequestOptions({ headers: header });
 
-        return this.http.post('http://localhost:8082/category/delete',id,option)
+        return this.http.post(this.path+'delete',id,option)
         .map((response: Response) => response.json());
     }
     getOneCategory(id: number) {
-        return this.http.post('http://localhost:8082/category/selectOne', id)
+        return this.http.post(this.path+'selectOne', id)
             .map((response: Response) => response.json());
     }
     updateCategory(category: Category) {
-        return this.http.post('http://localhost:8082/category/update', category);
+        return this.http.post(this.path+'update', category);
     }
 }
 

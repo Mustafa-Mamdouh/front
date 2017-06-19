@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, } from '@angular/http';
 import { Order } from './Order.entity'
-import{OrderDto} from './orderdto.entity';
+import { OrderDto } from './orderdto.entity';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 
 @Injectable()
 export class OrderService {
+    path: string = "http://localhost:8082/api/v1/" + "order/";
+
     constructor(private http: Http) { }
     addOrder(order: Order) {
-        return this.http.post('http://localhost:8082/order/add', order).map(
+        return this.http.post(this.path+'add', order).map(
             (response: Response) => {
                 console.log(response);
                 let responseMessage = response.json();
@@ -19,7 +21,7 @@ export class OrderService {
             });
     }
     getAllOrders() {
-        return this.http.get('http://localhost:8082/order/all').map(
+        return this.http.get(this.path+'all').map(
             (response: Response) => {
                 console.log(response);
                 let responseMessage = response.json();

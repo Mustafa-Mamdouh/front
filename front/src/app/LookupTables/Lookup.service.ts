@@ -8,14 +8,15 @@ id:number;
 }
 @Injectable()
 export class LookupService {
+    path:string="http://localhost:8082/api/v1/";
 
     constructor(private http: Http) { }
     getAllObjects(Service:string) {
-        return this.http.get('http://localhost:8082/'+Service+'/all')
+        return this.http.get(this.path+Service+'/all')
             .map((response: Response) => response.json());
     }
     addObject(o:any,Service:string) {
-        return this.http.post('http://localhost:8082/'+Service+'/add', o) 
+        return this.http.post(this.path+Service+'/add', o) 
         .map((response: Response) => response.json());
     }
     deleteObject(id: number,Service:string) {
@@ -24,12 +25,12 @@ export class LookupService {
         // header.append('UserLanguage','ar-EG');
         header.append('Content-Type', 'application/json');
         let option: RequestOptions = new RequestOptions({ headers: header });
-        return this.http.post('http://localhost:8082/'+Service+'/delete', id,option)
+        return this.http.post(this.path+Service+'/delete', id,option)
         .map((response: Response) => response.json());
     }
    
     updateObject(o: any,Service:string) {
-        return this.http.post('http://localhost:8082/'+Service+'/update', o)
+        return this.http.post(this.path+Service+'/update', o)
                 .map((response: Response) => response.json());
 
     }

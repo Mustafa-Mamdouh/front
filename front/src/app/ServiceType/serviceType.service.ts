@@ -5,22 +5,23 @@ import 'rxjs/Observable';
 import { ServiceType } from './serviceType.entity'
 @Injectable()
 export class ServiceTypeService {
+    path: string = "http://localhost:8082/api/v1/" + "serviceType/";
 
     constructor(private http: Http) { }
     getall() {
-        return this.http.get('http://localhost:8082/serviceType/all')
+        return this.http.get(this.path+'all')
             .map((response: Response) => response.json());
     }
     add(serviceType: ServiceType) {
-        return this.http.post('http://localhost:8082/serviceType/add', serviceType)
+        return this.http.post(this.path+'add', serviceType)
             .map((response: Response) => response.json());
     }
     update(serviceType: ServiceType) {
-        return this.http.post('http://localhost:8082/serviceType/update', serviceType)
+        return this.http.post(this.path+'update', serviceType)
             .map((response: Response) => response.json());
     }
     delete(id: number) {
-        return this.http.post('http://localhost:8082/serviceType/delete/' + id, {})
+        return this.http.post(this.path+'delete/' + id, {})
             .map((response: Response) => response.json());
     }
 
