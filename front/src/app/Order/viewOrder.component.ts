@@ -1,28 +1,43 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, AfterContentChecked } from '@angular/core';
 import { OrderService } from './order.service'
 import { Order } from './Order.entity';
 import { OrderDto } from './orderdto.entity'
 import { NgForm } from "@angular/forms";
+import { Input } from '@angular/core';
 @Component({
     selector: 'ntg-view-order',
     templateUrl: './viewOrder.component.html'
 })
 export class ViewOrder implements OnInit {
+    OnInit(): void {
+
+    }
+    
+
+    public loading = false;
+    public error = false;
     ngOnInit(): void {
-        //
+                // console.log('hello');
         this.orderService.getAllOrders().subscribe(
-            (data: any) => {this.ordersDto = data; console.log(this.ordersDto)});
-        //
+            (response: any) => {
+                // console.log(response);
+                let responseMessage = response.json();
+                if (parseInt(responseMessage['messageResponseObj'].code) == 0)
+                    this.ordersDto = responseMessage['orderDtos'];
+                else
+                    this.error = true;
+
+            });
+
     }
 
     ordersDto: Array<OrderDto>;
     constructor(private orderService: OrderService)
     { }
 
- selectedOrder:OrderDto=new OrderDto();
-    showAttributes(selectedRow:number)
-    {
-        this.selectedOrder=this.ordersDto[selectedRow];
+    selectedOrder: OrderDto = new OrderDto();
+    showAttributes(selectedRow: number) {
+        this.selectedOrder = this.ordersDto[selectedRow];
         console.log(this.selectedOrder);
     }
 }
