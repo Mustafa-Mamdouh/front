@@ -38,7 +38,7 @@ const APP_ROUTE: Routes = [
     { path: 'bandwidth', component: BandwidthComponent },
     { path: 'discountCategory', component: DiscountCategoryComponent },
     { path: 'pricebasis', component: PriceBasisComponent },
-     { path: 'servicetype', component: ServiceTypeComponent }
+    { path: 'servicetype', component: ServiceTypeComponent }
 ];
 @NgModule({
     imports: [
