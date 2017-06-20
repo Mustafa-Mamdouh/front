@@ -1,0 +1,57 @@
+
+<button type="submit" (click)="add()" data-dismiss="modal" class="btn btn-primary">add </button>
+<button type="submit" (click)="delete()" data-dismiss="modal" class="btn btn-primary">delete</button>
+<button type="submit" (click)="update()" data-dismiss="modal" class="btn btn-primary">update</button>
+
+
+
+ <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>
+                            contract terms 
+                        </td>
+                        <td>
+                            <select class="form-control" (change)="onChange($event.target.value)">
+              <option>Pick One</option>
+              <option  *ngFor="let cat of contractTerms" [value]="cat.id">{{cat.contractterm}}</option>
+          </select>
+                        </td>
+                    </tr>
+
+                <tr>
+                        <td>
+                           
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>rcid</td>
+                        <td><input [(ngModel)]="recid" /></td>
+                    </tr>
+                    <tr>
+                        <td>contract term</td>
+                        <td><input [(ngModel)]="contractterm" /></td>
+                    </tr>
+                        <tr>
+                        <td>description </td>
+                        <td><input   [(ngModel)]="description" /></td>
+                    </tr>
+                    <tr>
+                        <td>numberofmonths </td>
+                        <td><input [(ngModel)]="numberofmonths" /></td>
+                    </tr>
+                  <tr>
+                        <td>id</td>
+                        <td><input readonly  [(ngModel)]="id" /></td>
+                    </tr>
+                </table>
+                <button type="submit" (click)="save()" data-dismiss="modal" class="btn btn-primary">Save</button>
+
+                <!-- /.modal-body end -->
+
+            </div>
+    

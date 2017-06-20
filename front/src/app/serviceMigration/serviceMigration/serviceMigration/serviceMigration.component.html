@@ -1,0 +1,58 @@
+
+<button type="submit" (click)="add()" data-dismiss="modal" class="btn btn-primary">add </button>
+<button type="submit" (click)="delete()" data-dismiss="modal" class="btn btn-primary">delete</button>
+<button type="submit" (click)="update()" data-dismiss="modal" class="btn btn-primary">update</button>
+
+
+
+ <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>
+                           service migration id
+                        </td>
+                        <td>
+                            <select class="form-control" (change)="onChange($event.target.value)">
+              <option>Pick One</option>
+              <option  *ngFor="let cat of ServicesMigration" [value]="cat.id">{{cat.serviceid}}</option>
+          </select>
+                        </td>
+                    </tr>
+
+     
+                    <tr>
+                        <td>rcid</td>
+                        <td><input [(ngModel)]="recid" /></td>
+                    </tr>
+                     <tr>
+                        <td>service id</td>
+                        <td><input [(ngModel)]="serviceid" /></td>
+                    </tr>
+                    <tr>
+                        <td>from service id</td>
+                        <td><input [(ngModel)]="fromserviceid" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>to service id</td>
+                        <td><input [(ngModel)]="toserviceid" /></td>
+                    </tr>
+                        <tr>
+                        <td>requestid </td>
+                        <td><input   [(ngModel)]="requestid" /></td>
+                    </tr>
+                   
+
+                     <tr>
+                        <td>id</td>
+                        <td><input readonly [(ngModel)]="id" /></td>
+                    </tr>
+                  
+                </table>
+                <button type="submit" (click)="save()" data-dismiss="modal" class="btn btn-primary">Save</button>
+
+                <!-- /.modal-body end -->
+
+            </div>
+    

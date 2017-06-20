@@ -44,15 +44,26 @@ import { DiscountCategoryService } from './DiscountCategory/discountCategory.ser
 import { PriceBasisService } from './priceBasis/priceBasis.service';
 import { ServiceTypeService } from './ServiceType/serviceType.service';
 
+//Shaban
+import { ContractTerm } from './contractTerm/contractTerm.service'
+import { contractTermComponent } from './contractTerm/contractTerm/contractTerm.component'
+import { modifyReason } from './modifyReason/modifyReason.service'
+import { modifyReasonComponent } from './modifyReason/modifyReason/modifyReason.component'
+import { serviceMigration } from './serviceMigration/serviceMigration/serviceMigration.service'
+import { serviceMigrationComponent } from './serviceMigration/serviceMigration/serviceMigration/serviceMigration.component'
+
+
 @NgModule({
   providers: [CategoryService, OrderService, ComponentService, HomeService,ServiceService,LookupService,
   DownloadTypeService,CancelationReasonService,SellingTypeService,
-  BandwidthService,DiscountCategoryService,PriceBasisService,ServiceTypeService],
+  BandwidthService,DiscountCategoryService,PriceBasisService,ServiceTypeService,ContractTerm,modifyReason
+  ,serviceMigration],
   imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
   declarations: [AppComponent, CategoryComponent, AddCategory, EditCategoryComponent,
     AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent,ServiceComponent,DeliveryTypeComponent
     ,ServiceCategoryComponent,EmployeeDiscountComponent,DownloadTypeComponent,CancellationReasonComponent,SellingTypeComponent,
-    BandwidthComponent,DiscountCategoryComponent,PriceBasisComponent,ServiceTypeComponent],
+    BandwidthComponent,DiscountCategoryComponent,PriceBasisComponent,ServiceTypeComponent,
+    contractTermComponent,modifyReasonComponent,serviceMigrationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

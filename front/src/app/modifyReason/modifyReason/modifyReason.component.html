@@ -1,0 +1,51 @@
+
+<button type="submit" (click)="add()" data-dismiss="modal" class="btn btn-primary">add </button>
+<button type="submit" (click)="delete()" data-dismiss="modal" class="btn btn-primary">delete</button>
+<button type="submit" (click)="update()" data-dismiss="modal" class="btn btn-primary">update</button>
+
+
+
+ <div class="modal-body">
+                <!-- /.modal-body -->
+                <table class="table">
+                    <tr>
+                        <td>
+                            modify reasons 
+                        </td>
+                        <td>
+                            <select class="form-control" (change)="onChange($event.target.value)">
+              <option>Pick One</option>
+              <option  *ngFor="let cat of modifyReason" [value]="cat.id">{{cat.modifyreason}}</option>
+          </select>
+                        </td>
+                    </tr>
+
+                <tr>
+                        <td>
+                           
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>rcid</td>
+                        <td><input [(ngModel)]="rcid" /></td>
+                    </tr>
+                    <tr>
+                        <td>Reason</td>
+                        <td><input [(ngModel)]="reason" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>id </td>
+                        <td><input readonly  [(ngModel)]="id" /></td>
+                    </tr>
+
+                </table>
+                <button type="submit" (click)="save()" data-dismiss="modal" class="btn btn-primary">Save</button>
+
+                <!-- /.modal-body end -->
+
+            </div>
+    
