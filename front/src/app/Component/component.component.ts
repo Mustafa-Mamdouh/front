@@ -51,8 +51,7 @@ export class ComponentComponent implements OnInit {
 
         this.getComponent();
         this.getCatgories();
-        for (var i = 1; i <= this.components.length / 10; i++)
-            this.pagination.push(i);
+
     }
     //getComponents
     getComponent() {
@@ -60,14 +59,12 @@ export class ComponentComponent implements OnInit {
             (data: any) => {
                 if (data.messageResponseObj.code == "000") {
                     //Succed
-
                     this.wholecomp = data.components;
                     if (this.catIDfromCatgorey != 0)
                         this.components = this.wholecomp.filter(item => item.categoryId != null && item.categoryId.id == this.catIDfromCatgorey);
                     else
                         this.components = this.wholecomp;
                 }
-
                 else {
                     //Fail
                     alert("fail");
@@ -118,24 +115,22 @@ export class ComponentComponent implements OnInit {
     //add Component
     addComponent() {
         //call add services        
-        console.log(this.toBeSaved);
-        if (this.toBeSaved.categoryId == null)
-            this.toBeSaved.categoryId = this.catgories[0];
-         this.componentService.addComponent(this.toBeSaved).subscribe(
-        (data: any) => {
-            if (data.messageResponseObj.code == "000") {
-                //Succed
-                //add object to view
-                this.toBeSaved.id = data.componentID;
-                this.components.push(this.toBeSaved);
-                //reintialize the temp oject
-                this.toBeSaved = new IComponent();
-                this.closeModal();
-            } else {
-                //Fail
-                alert("fail");
-            }
-        });
+        this.toBeSaved.categoryId = this.catgories.filter(item=>item.id==this.catIDfromCatgorey)[0];
+        this.componentService.addComponent(this.toBeSaved).subscribe(
+            (data: any) => {
+                if (data.messageResponseObj.code == "000") {
+                    //Succed
+                    //add object to view
+                    this.toBeSaved.id = data.componentID;
+                    this.components.push(this.toBeSaved);
+                    //reintialize the temp oject
+                    this.toBeSaved = new IComponent();
+                    this.closeModal();
+                } else {
+                    //Fail
+                    alert("fail");
+                }
+            });
     }
 
     //edit Component
@@ -166,6 +161,7 @@ export class ComponentComponent implements OnInit {
                     //reintialize temp object
                     this.toBeSaved = new IComponent();
                     this.closeModal();
+                    this.components=this.components.filter(item=>item.categoryId.id==this.catIDfromCatgorey);
                 } else {
                     //Fail
                     alert("fail");
