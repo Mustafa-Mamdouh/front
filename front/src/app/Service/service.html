@@ -1,31 +1,33 @@
+<div class="card-header d-flex align-items-center">
+    <h1> Service</h1>
+</div>
 <div class="col-md-10 col-md-offset-1">
-    <table>
+    <table class="table">
         <tr>
-            <td>
-                <select class="form-control" (change)="setSelectedService($event)">
+            <td style="padding-right:10px">
+                <select class=" select2_demo_1 form-control" (change)="setSelectedService($event)">
         <option value="-1">Pick Service</option>
          <option  *ngFor="let service of services,let i = index" [value]="i">{{service.name}}</option>
     </select>
             </td>
-            <td>
-                <button (click)="setViewBoolean()" type="button" class="btn btn-success btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> View
+            <td class=" text-center col-md-1" style="padding-right:10px">
+                <button (click)="setViewBoolean()" type="button" class="btn btn-success ">
+          <span class="fa fa-bars"></span> View
         </button>
             </td>
-            <td>
-                <button (click)="addBtnService()" type="button" class="btn btn-add btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> Add
+            <td class=" text-center col-md-1" style="padding-right:10px">
+                <button (click)="addBtnService()" type="button" class="btn btn-add ">
+          <span class="fa fa-plus-circle"></span> Add
         </button>
             </td>
-            <td>
-                <button (click)="prepareEditService()" type="button" class="btn btn-primary btn-sm">
-          <span class="glyphicon glyphicon glyphicon-pencil"></span>Edit
+            <td class=" text-center col-md-1" style="padding-right:10px">
+                <button (click)="prepareEditService()" type="button" class="btn btn-primary ">
+          <span class="fa fa-edit"></span>Edit
            </button>
-
             </td>
-            <td>
-                <button (click)="deleteService()" type="button" class="btn btn-danger btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> Delete
+            <td class="text-center col-md-1" style="padding-right:10px">
+                <button (click)="deleteService()" type="button" class="btn btn-danger ">
+          <span class="fa fa-trash"></span> Delete
  </button>
 
             </td>
@@ -208,39 +210,39 @@
             </div>
             <div class="modal-body">
                 <!-- /.modal-body -->
-                           <form ngNativeValidate (ngSubmit)="addAttributeValue()">
-                <table class="table">
-                    <tr>
-                        <td>Attribute Name</td>
-                        <td><input type="text" required name="active" class="form-control" [(ngModel)]="attributeEdit.name"></td>
-                    </tr>
-                    <tr>
-                        <td>Mandatory</td>
-                        <td><input type="checkbox" name="mandatory" class="form-control" [(ngModel)]="attributeEdit.Mandatory">
-                        </td>
-                    </tr>
-
-
-                </table>
-                <button type="submit" class="btn btn-primary">Add  Value</button>
-                           </form>
-                <form ngNativeValidate (ngSubmit)="addAttributeToService()">
-                <div *ngFor="let input of attributeValueEdit,let i = index">
+                <form ngNativeValidate (ngSubmit)="addAttributeValue()">
                     <table class="table">
                         <tr>
-                            <td>
-                                <input name="value" class="form-control" placeholder="Attribute Value" required [(ngModel)]="input.value">
-
-                            </td>
-                            <td>
-                                <em class="fa fa-trash" [id]="i" (click)="removeAttribute($event)"></em>
-                            </td>
-
+                            <td>Attribute Name</td>
+                            <td><input type="text" required name="active" class="form-control" [(ngModel)]="attributeEdit.name"></td>
                         </tr>
+                        <tr>
+                            <td>Mandatory</td>
+                            <td><input type="checkbox" name="mandatory" class="form-control" [(ngModel)]="attributeEdit.Mandatory">
+                            </td>
+                        </tr>
+
+
                     </table>
-                </div>
-                <button [disabled]="!this.attributeEdit.name" type="submit" class="btn btn-primary">ADD</button>
-                <button [hidden]="true" data-dismiss="modal" #CompModal2></button>
+                    <button type="submit" class="btn btn-primary">Add  Value</button>
+                </form>
+                <form ngNativeValidate (ngSubmit)="addAttributeToService()">
+                    <div *ngFor="let input of attributeValueEdit,let i = index">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <input name="value" class="form-control" placeholder="Attribute Value" required [(ngModel)]="input.value">
+
+                                </td>
+                                <td>
+                                    <em class="fa fa-trash" [id]="i" (click)="removeAttribute($event)"></em>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                    <button [disabled]="!this.attributeEdit.name" type="submit" class="btn btn-primary">ADD</button>
+                    <button [hidden]="true" data-dismiss="modal" #CompModal2></button>
                 </form>
                 <!-- /.modal-body end -->
 
