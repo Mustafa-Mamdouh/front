@@ -34,10 +34,12 @@ export class CancellationReasonComponent {
         this.cancelationReasonToDelete.cancelreason = this.cancelationReasonList[rowIndex].cancelreason;
         this.cancelationReasonToDelete.id = this.cancelationReasonList[rowIndex].id;
     }
-    updateDownloadType() {
-        this.cancelationReasonService.updateCancelationReason(this.editedCancelationReason).subscribe();
+    updateCancellationReason() {
         this.cancelationReasonList[this.rowNumber].cancelreason = this.editedCancelationReason.cancelreason;
         this.cancelationReasonList[this.rowNumber].iscustomerrequest = this.editedCancelationReason.iscustomerrequest;
+        this.editedCancelationReason.iscustomerrequest = this.editedCancelationReason.iscustomerrequest + "" == "true" ? 1 : 0;
+        this.cancelationReasonService.updateCancelationReason(this.editedCancelationReason).subscribe();
+
     }
 
     edit(CancellationReasonRow: number) {
