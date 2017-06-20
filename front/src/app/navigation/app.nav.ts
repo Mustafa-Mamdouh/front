@@ -44,10 +44,12 @@ const APP_ROUTE: Routes = [
     { path: 'bandwidth', component: BandwidthComponent },
     { path: 'discountCategory', component: DiscountCategoryComponent },
     { path: 'pricebasis', component: PriceBasisComponent },
+
     { path: 'servicetype', component: ServiceTypeComponent },
     { path: 'contractTerm', component: contractTermComponent },
     { path: 'modifyReason', component: modifyReasonComponent },
     { path: 'serviceMig', component: serviceMigrationComponent }
+
 ];
 @NgModule({
     imports: [

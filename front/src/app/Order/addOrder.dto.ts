@@ -1,7 +1,7 @@
+import { ServiceDto } from './service.dto'
 import { IService } from '../Infrastructure/IService'
-import { ServiceDto } from './service.dto';
 import { Attribute } from './attributes.entity'
-export class Order {
+export class AddOrderDto {
     address: string;
     email: string;
     phone: string;
@@ -17,15 +17,24 @@ export class Order {
         this.serviceDto.dateCreated = service.dateCreated;
         this.serviceDto.deliveryDays = service.deliveryDays;
         this.serviceDto.attributesValue = new Array<Attribute>();
-        let attribute = new Attribute();
+
         for (let attr of service.attributeCollection) {
+            let attribute = new Attribute();
             attribute.id = attr.id;
             attribute.name = attr.name;
-            attribute.value = attr.attributeValueListCollection[0].value;
             attribute.type = attr.type;
+            console.log(attr)
+            if (attr.type == 'Single'&& attr.attributeValueListCollection.length>0) {
+                console.log(attr.attributeValueListCollection[0].value);
+                attribute.value = attr.attributeValueListCollection[0].value;
+            }
+            else
+                for (let attrValue of attr.attributeValueListCollection)
+                    attribute.valueList.push(attrValue.value);
             this.serviceDto.attributesValue.push(attribute);
         }
-
+        console.log('service dto');
+        console.log(this.serviceDto);
 
     }
 }

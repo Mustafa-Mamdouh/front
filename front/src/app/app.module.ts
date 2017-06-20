@@ -62,8 +62,10 @@ import { serviceMigrationComponent } from './serviceMigration/serviceMigration/s
   declarations: [AppComponent, CategoryComponent, AddCategory, EditCategoryComponent,
     AddOrderComponent, ViewOrder, KeysPipe, ComponentComponent, HomeComponent,ServiceComponent,DeliveryTypeComponent
     ,ServiceCategoryComponent,EmployeeDiscountComponent,DownloadTypeComponent,CancellationReasonComponent,SellingTypeComponent,
+
     BandwidthComponent,DiscountCategoryComponent,PriceBasisComponent,ServiceTypeComponent,
     contractTermComponent,modifyReasonComponent,serviceMigrationComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

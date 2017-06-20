@@ -1,7 +1,45 @@
+<div *ngIf="error==true">
+    <div class="modal-dialog modal-m" style="text-align: center;border:2px;border-style: solid;border-color: darkred">
+
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h3 style="margin:0;color: red"> error : </h3>
+            </div>
+            <div class="modal-body">
+                <h2 style="color: red">error has occured</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading==true">
+    <div class="modal-dialog modal-m">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="margin:0;"> loading</h3>
+            </div>
+            <div class="modal-body">
+                <div class="progress progress-striped active" style="margin-bottom:0;">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="col-md-12">
     <!-- Conteent-->
-    <h4 class="tableheader">categories</h4>
-
+    <!--<p data-placement="top" data-toggle="tooltip" title="Add"><a href='/add' class="btn btn-primary btn-xlg pull-right btnhead" data-title="Edit" data-toggle="modal" data-target="#addModal"
+            value="ADD"><em class="fa fa-plus-circle"></em> </button></p>-->
+    <br/>
+    <h4 class="tableheader">Orders
+    </h4>
+    <div>
+        <p data-placement="top" data-toggle="tooltip" title="Add"><a href="/order/addorder" class="btn btn-primary btn-xlg pull-right btnhead "><em class="fa fa-plus-circle"></em>Add</a>
+        </p>
+    </div>
     <div class="table-responsive">
         <table id="mytable" class="table table-bordred ">
             <thead>
@@ -12,6 +50,7 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Quanity</th>
+                
 
             </thead>
             <tbody>
@@ -69,16 +108,17 @@
                     <tbody>
                         <!--<tr>
                             <td>-->
-                                <!--<ul>-->
-                                    <!--{{selectedOrder}}-->
-                                    <tr *ngFor="let key of selectedOrder.attributes|keys">
-                                        <td>{{key.key}}</td>
-                                      
-                                      <td>  <ul *ngFor="let value of key.value">
-                                            <li> {{value}} </li>
-                                        </ul>
-                                      </td>
-                                    <!--</li>
+                        <!--<ul>-->
+                        <!--{{selectedOrder}}-->
+                        <tr *ngFor="let key of selectedOrder.attributes|keys">
+                            <td>{{key.key}}</td>
+
+                            <td>
+                                <ul *ngFor="let value of key.value">
+                                    <li> {{value}} </li>
+                                </ul>
+                            </td>
+                            <!--</li>
                                 </ul>-->
                             <!--</td>
                         </tr>-->

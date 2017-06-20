@@ -1,56 +1,91 @@
+<div *ngIf="error==true">
+    <div class="modal-dialog modal-m" style="text-align: center;border:2px;border-style: solid;border-color: darkred">
+
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h3 style="margin:0;color: red"> error : </h3>
+            </div>
+            <div class="modal-body">
+                <h2 style="color: red">error has occures</h2>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="signupbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title">Order</div>
+            <div class="panel-title">
+                <h3>Add New Order</h3>
+            </div>
         </div>
         <div class="panel-body">
-
-            <form class="form-horizontal" ngNativeValidate (ngSubmit)='addOrder()' #f>
+            <form ngNativeValidate class="form-horizontal" (ngSubmit)='addOrder(f)' #f="ngForm">
                 <div id="div_id_username" class="form-group required">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Username<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
                         <input class="input-md  textinput textInput form-control" id="id_username" maxlength="30" name="username" placeholder="username"
-                            style="margin-bottom: 10px" type="text"  required="true" [(ngModel)]='order.userName'/>
+                            style="margin-bottom: 10px" type="text" required="true" [(ngModel)]='newOrder.userName' />
                     </div>
                 </div>
                 <div id="div_id_email" class="form-group required">
                     <label for="id_email" class="control-label col-md-4  requiredField"> E-mail<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
                         <input class="input-md emailinput form-control" id="id_email" name="email" placeholder="Your current email address" style="margin-bottom: 10px"
-                            type="email"  required [(ngModel)]='order.email'/>
+                            type="email" required [(ngModel)]='newOrder.email' />
                     </div>
                 </div>
                 <div id="div_id_location" class="form-group required">
                     <label for="id_location" class="control-label col-md-4  requiredField"> Address<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
                         <input class="input-md textinput textInput form-control" id="id_location" name="Address" placeholder="Your Pincode and City"
-                            style="margin-bottom: 10px" type="text"  required [(ngModel)]='order.address'/>
+                            style="margin-bottom: 10px" type="text" required [(ngModel)]='newOrder.address' />
                     </div>
                 </div>
                 <div id="div_id_Phone" class="form-group required">
                     <label for="id_location" class="control-label col-md-4  requiredField"> Phone<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
-                        <input class="input-md textinput textInput form-control" id="id_phone" name="Phone" placeholder=""
-                            style="margin-bottom: 10px" type="tel" pattern="^01(0|1|2){1}[0-9]{8}$"  required [(ngModel)]='order.phone' />
+                        <input class="input-md textinput textInput form-control" id="id_phone" name="Phone" placeholder="" style="margin-bottom: 10px"
+                            type="text" required [(ngModel)]='newOrder.phone' />
                     </div>
                 </div>
                 <div id="div_id_quantity" class="form-group required">
                     <label for="id_location" class="control-label col-md-4  requiredField"> quantity<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
-                        <input class="input-md textinput textInput form-control" id="id_quntity" name="Address" placeholder="0"
-                            style="margin-bottom: 10px" type="number" min="0"  required [(ngModel)]='order.quantity'/>
+                        <input class="input-md textinput textInput form-control" id="id_quntity" name="Address" placeholder="0" style="margin-bottom: 10px"
+                            type="number" min="0" required [(ngModel)]='newOrder.quantity' />
                     </div>
                 </div>
+                <select class="form-control" (change)='viewAttr($event.target.value)' required>
+                          <option>Pick Service</option>
+                          <option  *ngFor="let service of services;let rowIndex = index" [value]="rowIndex" >{{service.name}}</option>
+             </select>
+                <div id='serviceAttr' *ngFor="let element of newOrder.serviceDto.attributesValue,let i of index">
 
-                      
-
-
+                    
+                    <div *ngIf='element.type=="Single"'>
+                        {{element.value}}
+                        <label for='element.name'>{{element.name}}</label>
+                        <input name='demo' id='element.name' [(ngModel)]='element.value' />
+                    </div>
+                    <div *ngIf='element.type=="List"'>
+                        {{element.valuelist}}
+                        <label for='element.name'>{{element.name}}</label>
+                        <!--{{element.name}}-->
+                        <select name='demo' id='name' class="form-control" (change)='setListValue($event.target.value)' required>
+                         <option>Pick Service</option>
+                          <option  *ngFor="let attrValue of element.valueList"  [value]="attrValue+-+element.id" >
+                              {{attrValue}}
+                              </option>
+                    </select>
+                        <!--[value]="{id:element.id,value:attrValue}"-->
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="aab controls col-md-4 "></div>
                     <div class="controls col-md-8 ">
-                        <button type="submit" name="Signup"  class="btn btn-primary btn btn-info" id="submit-id-signup">Add</button>                        
-                    
+                        <button type="submit" name="Signup" class="btn btn-primary btn btn-info" id="submit-id-signup">Submit</button>
                     </div>
                 </div>
             </form>
