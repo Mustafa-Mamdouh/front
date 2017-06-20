@@ -101,7 +101,7 @@
         </table>
 
 
-        <button [disabled]="!isView" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addAttribute">Add Attribute</button>
+        <button [disabled]="!isView" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addAttribute">Add Attribute</button>
 
         <table class="table">
             <thead>
@@ -231,7 +231,7 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <input name="value" class="form-control" placeholder="Attribute Value" required [(ngModel)]="input.value">
+                                    <input name="value+{{i}}" class="form-control" placeholder="Attribute Value" required [(ngModel)]="input.value">
 
                                 </td>
                                 <td>

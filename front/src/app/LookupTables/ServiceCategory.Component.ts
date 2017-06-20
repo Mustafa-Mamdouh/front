@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { LookupService } from './Lookup.service';
 import { IServiceCategory } from '../Infrastructure/IServiceCategory';
 import { NgForm, FormBuilder, Validators } from "@angular/forms";
-
+declare var jQuery:any;
 @Component({
     moduleId: module.id,
     selector: 'DeliveryType',
@@ -24,9 +24,14 @@ export class ServiceCategoryComponent implements OnInit {
     pagnum: number = 0;
 
 
-
+    $: any;
     ngOnInit(): void {
+        
         this.getComponent();
+       jQuery(this.elem.nativeElement).ready(function () {
+            jQuery('.footable').footable();
+           jQuery('.footable2').footable();
+        });
     }
     //getComponents
     getComponent() {
@@ -144,7 +149,7 @@ export class ServiceCategoryComponent implements OnInit {
             });
     }
 
-    constructor(private lookupService: LookupService, private changeDetectorRef: ChangeDetectorRef, private router: ActivatedRoute) {
+    constructor(private lookupService: LookupService,private elem:ElementRef ,private changeDetectorRef: ChangeDetectorRef, private router: ActivatedRoute) {
 
     }
 }

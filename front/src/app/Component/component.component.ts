@@ -6,6 +6,7 @@ import { CategoryService } from '../category/category.service';
 import { ICategory } from '../Infrastructure/ICatgorey';
 
 import { NgForm, FormBuilder, Validators } from "@angular/forms";
+declare var jQuery:any;
 
 @Component({
     moduleId: module.id,
@@ -44,6 +45,10 @@ export class ComponentComponent implements OnInit {
     }
     catIDfromCatgorey: number;
     ngOnInit(): void {
+          jQuery(this.elem.nativeElement).ready(function () {
+            jQuery('.footable').footable();
+           jQuery('.footable2').footable();
+        });
         this.router.params.subscribe(params => {
             if (params['id'] != null)
                 this.catIDfromCatgorey = +params['id'];
@@ -169,7 +174,7 @@ export class ComponentComponent implements OnInit {
             });
     }
 
-    constructor(private componentService: ComponentService, private catgoreyService: CategoryService, private changeDetectorRef: ChangeDetectorRef, private router: ActivatedRoute) {
+    constructor(private elem:ElementRef,private componentService: ComponentService, private catgoreyService: CategoryService, private changeDetectorRef: ChangeDetectorRef, private router: ActivatedRoute) {
 
     }
 }
