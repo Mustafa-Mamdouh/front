@@ -84,9 +84,7 @@ export class ServiceCategoryComponent implements OnInit {
     //add Component
     addComponent() {
         //call add services 
-        this.toBeSaved.bandwidthCoverageApplicable = this.toBeSaved.bandwidthCoverageApplicable + "" == "true" ? "1" : "0";
-        this.toBeSaved.fupApllicable = this.toBeSaved.fupApllicable + "" == "true" ? "1" : "0";
-
+        this.prepareBindChecks();
         this.lookupService.addObject(this.toBeSaved, this.servicename).subscribe(
             (data: any) => {
                 if (data.messageResponseObj.code == "000") {
@@ -103,7 +101,6 @@ export class ServiceCategoryComponent implements OnInit {
                 }
             });
     }
-
     //edit Component
 
     //get target object before open modal
@@ -114,12 +111,18 @@ export class ServiceCategoryComponent implements OnInit {
         this.toBeSaved = this.components.filter(item => item.id == this.toBeDeleted)[0];
     }
 
+    //this method for ngmodel binding for checkboxes value to work with angular2
+    prepareBindChecks() {
+        this.toBeSaved.bandwidthCoverageApplicable = this.toBeSaved.bandwidthCoverageApplicable + "" == "true" ? 1 : 0;
+        this.toBeSaved.fupApllicable = this.toBeSaved.fupApllicable + "" == "true" ? 1 : 0;
+
+    }
+
     //edit method
     editComponent() {
         //call the edit service
         this.toBeSaved.id = this.toBeDeleted;
-        this.toBeSaved.bandwidthCoverageApplicable = this.toBeSaved.bandwidthCoverageApplicable + "" == "true" ? "1" : "0";
-        this.toBeSaved.fupApllicable = this.toBeSaved.fupApllicable + "" == "true" ? "1" : "0";
+        this.prepareBindChecks();
         this.lookupService.updateObject(this.toBeSaved, this.servicename).subscribe(
             (data: any) => {
                 //check result
