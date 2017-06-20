@@ -52,6 +52,7 @@
     <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 
         <div role="document" class="modal-dialog">
+                        <form ngNativeValidate (ngSubmit)="addCategory()">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 id="exampleModalLabel" class="modal-title">Edit</h4>
@@ -60,25 +61,26 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control " id='name' type="text" placeholder="name" [(ngModel)]="newCategory.name" />
+                        <input class="form-control " id='name' name="name" type="text" placeholder="name" [(ngModel)]="newCategory.name" required />
                     </div>
                     <div class="form-group">
                         <label>Type</label>
-                        <input class="form-control " id='type' type="text" placeholder="type" [(ngModel)]="newCategory.type" />
+                        <input class="form-control " id='type' name="type" type="text" placeholder="type" [(ngModel)]="newCategory.type" required />
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addCategory()">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-            </div>
+            </div></form>
         </div>
     </div>
     <!-- end add modal-->
     <div id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 
         <div role="document" class="modal-dialog">
+                        <form ngNativeValidate (ngSubmit)="updateCategory()">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 id="exampleModalLabel" class="modal-title">Edit</h4>
@@ -87,19 +89,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control " id='name' type="text" [(ngModel)]="editCategory.name" />
+                        <input class="form-control " id='name' name="name" type="text" [(ngModel)]="editCategory.name" required />
                     </div>
                     <div class="form-group">
                         <label>Type</label>
-                        <input class="form-control " id='name' type="text" [(ngModel)]="editCategory.type" />
+                        <input class="form-control " id='name' name="type" type="text" [(ngModel)]="editCategory.type" required />
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateCategory()">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-            </div>
+            </div></form>
         </div>
     </div>
     <!-- edit Modal-->

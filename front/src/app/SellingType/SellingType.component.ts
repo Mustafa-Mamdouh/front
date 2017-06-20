@@ -36,9 +36,11 @@ export class SellingTypeComponent {
         this.SellingTypeToDelete.id = this.sellingTypeList[rowIndex].id;
     }
     updateSellingType() {
-        this.sellingTypeService.updateSellingType(this.editedSellingType).subscribe();
+       
         this.sellingTypeList[this.rowNumber].type = this.editedSellingType.type;
         this.sellingTypeList[this.rowNumber].hideInDropDown = this.editedSellingType.hideInDropDown;
+         this.editedSellingType.hideInDropDown = this.editedSellingType.hideInDropDown + "" == "true" ? 1 : 0;
+         this.sellingTypeService.updateSellingType(this.editedSellingType).subscribe();
     }
 
     edit(sellingTypeRow: number) {

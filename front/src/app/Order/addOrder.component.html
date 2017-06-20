@@ -6,7 +6,7 @@
         </div>
         <div class="panel-body">
 
-            <form class="form-horizontal"  (ngSubmit)='addOrder(f)' #f>
+            <form class="form-horizontal" ngNativeValidate (ngSubmit)='addOrder()' #f>
                 <div id="div_id_username" class="form-group required">
                     <label for="id_username" class="control-label col-md-4  requiredField"> Username<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
@@ -32,7 +32,7 @@
                     <label for="id_location" class="control-label col-md-4  requiredField"> Phone<span class="asteriskField">*</span> </label>
                     <div class="controls col-md-8 ">
                         <input class="input-md textinput textInput form-control" id="id_phone" name="Phone" placeholder=""
-                            style="margin-bottom: 10px" type="text"  required [(ngModel)]='order.phone' />
+                            style="margin-bottom: 10px" type="tel" pattern="^01(0|1|2){1}[0-9]{8}$"  required [(ngModel)]='order.phone' />
                     </div>
                 </div>
                 <div id="div_id_quantity" class="form-group required">
@@ -49,8 +49,8 @@
                 <div class="form-group">
                     <div class="aab controls col-md-4 "></div>
                     <div class="controls col-md-8 ">
-                        <input type="button" name="Signup" value="submit" class="btn btn-primary btn btn-info" id="submit-id-signup" (click)="addOrder()" />                        
-                        />
+                        <button type="submit" name="Signup"  class="btn btn-primary btn btn-info" id="submit-id-signup">Add</button>                        
+                    
                     </div>
                 </div>
             </form>
