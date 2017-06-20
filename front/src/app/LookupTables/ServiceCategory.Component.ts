@@ -24,7 +24,7 @@ export class ServiceCategoryComponent implements OnInit {
     pagnum: number = 0;
 
 
-    $: any;
+   
     ngOnInit(): void {
         
         this.getComponent();

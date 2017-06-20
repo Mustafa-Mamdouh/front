@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef,ElementRef } from '@angular/core';
 import { Router } from '@angular/router'
 import { CategoryService } from './category.service';
 import { Category } from './category.entity';
+declare var jQuery:any;
 
 @Component({
     selector: 'pm-app',
@@ -15,6 +16,7 @@ export class CategoryComponent implements OnInit {
     deleteCategory: Category = new Category();
     newCategory: Category = new Category();
     ngOnInit(): void {
+     
         this.categoryService.getAllCategories().subscribe(
             (data: any) => {
                 const myArray = [];
@@ -23,6 +25,7 @@ export class CategoryComponent implements OnInit {
                 }
                 this.categories = data;
             });
+        
     }
     deleteService() {
         this.categoryService.deleteCategory(this.categories[this.rowNumber].id).subscribe(data => {
@@ -71,5 +74,5 @@ export class CategoryComponent implements OnInit {
         this.router.navigate(['component', this.categories[categoryRow].id]);
 
     }
-    constructor(private categoryService: CategoryService, private changeDetectorRef: ChangeDetectorRef, private router: Router) { }
+    constructor(private elem:ElementRef,private categoryService: CategoryService, private changeDetectorRef: ChangeDetectorRef, private router: Router) { }
 }
