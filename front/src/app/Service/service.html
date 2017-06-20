@@ -32,7 +32,7 @@
         </tr>
     </table>
 
-    <form (ngSubmit)="addService()">
+    <form ngNativeValidate (ngSubmit)="addService()">
         <table class="table">
             <tr>
                 <td>Name</td>
@@ -49,22 +49,22 @@
             </tr>
             <tr>
                 <td>Termination Fees</td>
-                <td><input [disabled]="!isView" type="text" name="terminationFees" class="form-control" [(ngModel)]="toBeSaved.terminationFees"
+                <td><input [disabled]="!isView" type="number" name="terminationFees" class="form-control" [(ngModel)]="toBeSaved.terminationFees"
                         required/></td>
             </tr>
             <tr>
                 <td>Suspension Fees</td>
-                <td><input [disabled]="!isView" type="text" name="suspensionFees" class="form-control" [(ngModel)]="toBeSaved.suspensionFees"
+                <td><input [disabled]="!isView" type="number" name="suspensionFees" class="form-control" [(ngModel)]="toBeSaved.suspensionFees"
                         required/></td>
             </tr>
             <tr>
                 <td>Delivery Fees</td>
-                <td><input [disabled]="!isView" type="text" name="deliveryFees" class="form-control" [(ngModel)]="toBeSaved.deliveryFees"
+                <td><input [disabled]="!isView" type="number" name="deliveryFees" class="form-control" [(ngModel)]="toBeSaved.deliveryFees"
                         required/></td>
             </tr>
             <tr>
                 <td>Delivery Days</td>
-                <td><input [disabled]="!isView" type="text" name="type" class="form-control" [(ngModel)]="toBeSaved.deliveryDays"
+                <td><input [disabled]="!isView" type="number" name="type" class="form-control" [(ngModel)]="toBeSaved.deliveryDays"
                         required/></td>
             </tr>
 
@@ -208,10 +208,11 @@
             </div>
             <div class="modal-body">
                 <!-- /.modal-body -->
+                           <form ngNativeValidate (ngSubmit)="addAttributeValue()">
                 <table class="table">
                     <tr>
                         <td>Attribute Name</td>
-                        <td><input type="text" name="active" class="form-control" [(ngModel)]="attributeEdit.name"></td>
+                        <td><input type="text" required name="active" class="form-control" [(ngModel)]="attributeEdit.name"></td>
                     </tr>
                     <tr>
                         <td>Mandatory</td>
@@ -221,13 +222,14 @@
 
 
                 </table>
-                <button (click)="addAttributeValue()" class="btn btn-primary">Add  Value</button>
-
+                <button type="submit" class="btn btn-primary">Add  Value</button>
+                           </form>
+                <form ngNativeValidate (ngSubmit)="addAttributeToService()">
                 <div *ngFor="let input of attributeValueEdit,let i = index">
                     <table class="table">
                         <tr>
                             <td>
-                                <input class="form-control" [(ngModel)]="input.value">
+                                <input name="value" class="form-control" placeholder="Attribute Value" required [(ngModel)]="input.value">
 
                             </td>
                             <td>
@@ -237,9 +239,9 @@
                         </tr>
                     </table>
                 </div>
-                <button [disabled]="!this.attributeEdit.name" type="submit" (click)="addAttributeToService()" data-dismiss="modal" class="btn btn-primary">ADD</button>
+                <button [disabled]="!this.attributeEdit.name" type="submit" class="btn btn-primary">ADD</button>
                 <button [hidden]="true" data-dismiss="modal" #CompModal2></button>
-
+                </form>
                 <!-- /.modal-body end -->
 
             </div>
