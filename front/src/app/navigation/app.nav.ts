@@ -20,6 +20,12 @@ import { BandwidthComponent } from '../Bandwidth/bandwidth.component'
 import { DiscountCategoryComponent } from '../DiscountCategory/discountCategory.component'
 import { PriceBasisComponent } from '../priceBasis/priceBasis.component';
 import { ServiceTypeComponent } from '../ServiceType/serviceType.component';
+
+
+import { contractTermComponent } from '../contractTerm/contractTerm/contractTerm.component'
+import { modifyReasonComponent } from '../modifyReason/modifyReason/modifyReason.component'
+import { serviceMigrationComponent } from '../serviceMigration/serviceMigration/serviceMigration/serviceMigration.component'
+
 const APP_ROUTE: Routes = [
     { path: '', component: HomeComponent },
     { path: 'addCategory', component: AddCategory },
@@ -38,7 +44,12 @@ const APP_ROUTE: Routes = [
     { path: 'bandwidth', component: BandwidthComponent },
     { path: 'discountCategory', component: DiscountCategoryComponent },
     { path: 'pricebasis', component: PriceBasisComponent },
-    { path: 'servicetype', component: ServiceTypeComponent }
+
+    { path: 'servicetype', component: ServiceTypeComponent },
+    { path: 'contractTerm', component: contractTermComponent },
+    { path: 'modifyReason', component: modifyReasonComponent },
+    { path: 'serviceMig', component: serviceMigrationComponent }
+
 ];
 @NgModule({
     imports: [

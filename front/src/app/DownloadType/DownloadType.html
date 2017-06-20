@@ -13,7 +13,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Download Type</th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let downloadType of downloadTypeList; let rowIndex = index">
@@ -42,7 +42,7 @@
     <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 
         <div role="document" class="modal-dialog">
-          
+                      <form ngNativeValidate (ngSubmit)="addDownloadType()">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 id="exampleModalLabel" class="modal-title">Edit</h4>
@@ -50,7 +50,6 @@
                     </div>
                     <div class="modal-body">
 
-                        <form ngNativeValidate (ngSubmit)="addDownloadType()">
                             <table class="table">
                         
                                 <tr>
@@ -64,15 +63,16 @@
                                 <button type="submit" class="btn btn-primary">Save</button>
                                 <button type="button" class="btn btn-default hidden" data-dismiss="modal" #closeBtn>Cancel</button>
                             </div>
-                        </form>
+                      
                     </div>
-                </div>
+                </div></form>
         </div>
     </div>
     <!-- end add modal-->
     <div id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 
         <div role="document" class="modal-dialog">
+                        <form ngNativeValidate (ngSubmit)="updateDownloadType()">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 id="exampleModalLabel" class="modal-title">Edit</h4>
@@ -81,16 +81,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control " id='name' type="text" [(ngModel)]="editedDownloadType.name" />
+                        <input class="form-control " name="name" required id='name' type="text" [(ngModel)]="editedDownloadType.name" />
                     </div>
                    
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateDownloadType()">Save changes</button>
+                    <button type="submit" class="btn btn-primary" >Save changes</button>
                 </div>
-            </div>
+            </div></form>
         </div>
     </div>
     
