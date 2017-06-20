@@ -12,21 +12,21 @@ export class ViewOrder implements OnInit {
     OnInit(): void {
 
     }
-    
+
 
     public loading = false;
     public error = false;
     ngOnInit(): void {
-                // console.log('hello');
+        // console.log('hello');
         this.orderService.getAllOrders().subscribe(
             (response: any) => {
-                // console.log(response);
-                let responseMessage = response.json();
-                if (parseInt(responseMessage['messageResponseObj'].code) == 0)
-                    this.ordersDto = responseMessage['orderDtos'];
-                else
-                    this.error = true;
-
+                console.log(response);
+                // let responseMessage = response;
+                // if (parseInt(responseMessage['messageResponseObj'].code) == 0)
+                // this.ordersDto = responseMessage['orderDtos'];
+                // else
+                //     this.error = true;
+                this.ordersDto=response;
             });
 
     }

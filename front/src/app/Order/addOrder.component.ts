@@ -5,7 +5,8 @@ import { IService } from '../Infrastructure/IService';
 import { Order } from './Order.entity';
 import { NgForm } from "@angular/forms";
 import { IAttribute } from '../Infrastructure/IAttribute'
-import{AddOrderDto} from './addOrder.dto';
+import { AddOrderDto } from './addOrder.dto';
+import { SelectedListItem } from './selectedListItem.entity'
 @Component({
     selector: 'ntg-add-order',
     templateUrl: './addOrder.component.html'
@@ -14,47 +15,63 @@ export class AddOrderComponent implements OnInit {
     loading: boolean = true;
     services = new Array<IService>();
     arrayofAttribute = new Array<IAttribute>();
-    newOrder:AddOrderDto=new AddOrderDto();
+    newOrder: AddOrderDto = new AddOrderDto();
+    
     ngOnInit(): void {
-        this.orderService.getAllOrders().subscribe((data: any) => { this.loading = false; });
-        this.serviceService.getAllServices
-        ().subscribe((data: any) => {
-            if (data.messageResponseObj.code == "000") {
-                //Succed
-                this.services = data.serviceDtos;
 
-                console.log(this.services);
-            } else {
-                //Fail
-                alert("fail");
+        // this.orderService.getAllOrders().subscribe((data: any) => { this.loading = false; });
+        console.log(this.newOrder);
+        this.serviceService.getAllServices
+            ().subscribe((data: any) => {
+                if (data.messageResponseObj.code == "000") {
+                    //Succed
+                    this.services = data.serviceDtos;
+                    console.log('service');
+                    console.log(this.services);
+                } else {
+                    //Fail
+                    alert("fail");
+                }
+            });
+    }
+    setListValue(data: string) {
+        console.log(data);
+        const [value, id] = data.split('-');
+        console.log(id);
+        console.log(value);
+        for (let attr of this.newOrder.serviceDto.attributesValue) {
+            if (attr.id == parseInt(id)) {
+                attr.value = value;
             }
-        });
+
+        }
     }
     viewAttr(serviceNumber: number) {
+        console.log(serviceNumber);
         if (isNaN(serviceNumber)) {
 
-            this.arrayofAttribute = new Array<IAttribute>();
+            this.newOrder.serviceDto.attributesValue = new Array();
             return;
         }
         if (this.services[serviceNumber].attributeCollection != null) {
-            this.order.setValues( this.services[serviceNumber]);
-            this.arrayofAttribute = this.services[serviceNumber].attributeCollection;
-            console.log(this.arrayofAttribute);
+            this.newOrder.setValues(this.services[serviceNumber]);
+            // this.arrayofAttribute = this.services[serviceNumber].attributeCollection;
+            console.log(this.newOrder);
         }
-        else
-            this.arrayofAttribute = new Array<IAttribute>();
+
     }
 
-    order: Order = new Order;
+
     public error = false;
     constructor(private orderService: OrderService, private serviceService: ServiceService)
     { }
-    addOrder(form: NgForm): void {
+    addOrder(form: NgForm) {
         // console.log(form);
-        console.log(this.order);
+        
         if (form.valid) {
             console.log("valid");
-            this.orderService.addOrder(this.order).subscribe(
+            console.log(this.newOrder);
+            this.orderService.addOrder(this.newOrder).subscribe(
                 (response: any) => {
                     console.log(response);
                     let responseMessage = response.json();
@@ -68,11 +85,11 @@ export class AddOrderComponent implements OnInit {
                     else {
                         console.log("else");
                         this.error = true;
-
                     }
                 }
             );
         }
+        
     }
     // onSubmit(form: NgForm) {
     //     this.orderService.addOrder(this.order).subscribe();

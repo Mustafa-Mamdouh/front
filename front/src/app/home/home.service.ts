@@ -8,7 +8,7 @@ export class HomeService {
     constructor(private http: Http)
     { }
     getInfo() {
-    return    this.http.get('http://localhost:8082/home/info').map(
+    return    this.http.get('http://localhost:8082/api/v1/home/info').map(
             (response: Response) => {
                 let responseMessage = response.json();
                 if (parseInt(responseMessage['messageResponseObj'].code) == 0)

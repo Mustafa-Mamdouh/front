@@ -116,7 +116,8 @@ export class ComponentComponent implements OnInit {
     //add Component
     addComponent() {
         //call add services        
-        this.componentService.addComponent(this.toBeSaved).subscribe(
+        console.log(this.toBeSaved);
+        // this.componentService.addComponent(this.toBeSaved).subscribe(
             (data: any) => {
                 if (data.messageResponseObj.code == "000") {
                     //Succed
