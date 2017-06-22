@@ -34,7 +34,7 @@
         </tr>
     </table>
 
-    <form ngNativeValidate (ngSubmit)="addService()">
+    <form ngNativeValidate (ngSubmit)="saveButton()">
         <table class="table">
             <tr>
                 <td>Name</td>
@@ -101,7 +101,7 @@
         </table>
 
 
-        <button [disabled]="!isView" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addAttribute">Add Attribute</button>
+        <button type="button" [disabled]="!isView" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addAttribute">Add Attribute</button>
 
         <table class="table">
             <thead>

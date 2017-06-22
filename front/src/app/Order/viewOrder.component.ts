@@ -20,7 +20,7 @@ export class ViewOrder implements OnInit {
         // console.log('hello');
         this.orderService.getAllOrders().subscribe(
             (response: any) => {
-                console.log(response);
+                // console.log(response);
                 // let responseMessage = response;
                 // if (parseInt(responseMessage['messageResponseObj'].code) == 0)
                 // this.ordersDto = responseMessage['orderDtos'];
@@ -38,6 +38,6 @@ export class ViewOrder implements OnInit {
     selectedOrder: OrderDto = new OrderDto();
     showAttributes(selectedRow: number) {
         this.selectedOrder = this.ordersDto[selectedRow];
-        console.log(this.selectedOrder);
+        // console.log(this.selectedOrder);
     }
 }

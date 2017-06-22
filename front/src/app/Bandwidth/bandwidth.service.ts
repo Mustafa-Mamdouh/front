@@ -3,9 +3,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { Bandwidth } from './bandwidth.entity';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 @Injectable()
 export class BandwidthService {
-        path:string="http://localhost:8082/api/v1/"+"Bandwidth/";
+        path:string=AppSettings.API_ENDPOINT+"Bandwidth/";
 
     constructor(private http: Http) { }
     getAll() {

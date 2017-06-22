@@ -3,12 +3,14 @@ import {Http , Headers,RequestOptions,Response} from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { IComponent } from '../Infrastructure/IComponent';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 interface idObject{
 id:number;
 }
 @Injectable()
 export class LookupService {
-    path:string="http://localhost:8082/api/v1/";
+    path:string=AppSettings.API_ENDPOINT;
 
     constructor(private http: Http) { }
     getAllObjects(Service:string) {

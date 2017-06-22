@@ -3,9 +3,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { ServiceType } from './serviceType.entity'
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 @Injectable()
 export class ServiceTypeService {
-    path: string = "http://localhost:8082/api/v1/" + "serviceType/";
+    path: string = AppSettings.API_ENDPOINT+ "serviceType/";
 
     constructor(private http: Http) { }
     getall() {

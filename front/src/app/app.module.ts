@@ -53,6 +53,7 @@ import { serviceMigration } from './serviceMigration/serviceMigration/serviceMig
 import { serviceMigrationComponent } from './serviceMigration/serviceMigration/serviceMigration/serviceMigration.component'
 
 
+
 @NgModule({
   providers: [CategoryService, OrderService, ComponentService, HomeService,ServiceService,LookupService,
   DownloadTypeService,CancelationReasonService,SellingTypeService,

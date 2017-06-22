@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
-
+import { AppSettings } from '../DomainConfig/AppSetting'
 import { CancelationReason } from './CancelationReason.entity';
 @Injectable()
 export class CancelationReasonService implements ExceptionInformation {
-    path: string = "http://localhost:8082/api/v1/" + "CancelationReason/";
+    path: string = AppSettings.API_ENDPOINT + "CancelationReason/";
     constructor(private http: Http) { }
 
     getAllCancelationReasons() {

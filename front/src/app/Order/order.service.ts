@@ -37,23 +37,16 @@ import 'rxjs/Observable';
 
 @Injectable()
 export class OrderService {
-    path: string = "http://localhost:8082/api/v1/" + "order/";
+    path: string = "http://192.168.10.214:8082/api/v1/"+ "order/";
 
     constructor(private http: Http) { }
     addOrder(order: Order) {
-        return this.http.post(this.path+'add', order).map(
-            (response: Response) => {
-                console.log(response);
-                let responseMessage = response.json();
-                if (parseInt(responseMessage['messageResponseObj'].code) == 0)
-                    return responseMessage['order'];
-                throw new Error('error');
-            });
+        return this.http.post(this.path+'add', order).map((response: Response) => response.json());;
     }
     getAllOrders() {
         return this.http.get(this.path+'all').map(
             (response: Response) => {
-                console.log(response);
+               // console.log(response);
                 let responseMessage = response.json();
                 return responseMessage['orderDtos'];
                 // let ordersDto:Array<OrderDto>=responseMessage['orderDtos'];

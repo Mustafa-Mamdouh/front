@@ -3,10 +3,12 @@ import {Http , Headers,RequestOptions,Response} from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { IService } from '../Infrastructure/IService';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 
 @Injectable()
 export class ServiceService {
-    path:string="http://localhost:8082/api/v1/"+"Service/";
+    path:string=AppSettings.API_ENDPOINT+"Service/";
     constructor(private http: Http) { }
     getAllServices() {
         return this.http.get(this.path+'getAll')
@@ -14,6 +16,10 @@ export class ServiceService {
     }
     addService(Service: IService) {
         return this.http.post(this.path+'add', Service) 
+        .map((response: Response) => response.json());
+    }
+      editService(Service: IService) {
+        return this.http.post(this.path+'update', Service) 
         .map((response: Response) => response.json());
     }
     deleteService(id: number) {

@@ -3,9 +3,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { SellingType } from './SellingType.entity';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 @Injectable()
 export class SellingTypeService implements ExceptionInformation {
-    path: string = "http://localhost:8082/api/v1/" + "sellingType/";
+    path: string = AppSettings.API_ENDPOINT + "sellingType/";
 
     constructor(private http: Http) { }
 

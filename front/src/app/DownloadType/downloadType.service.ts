@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 
 import { DownloadType } from './downloadType.entity';
 @Injectable()
 export class DownloadTypeService implements ExceptionInformation {
-    path: string = "http://localhost:8082/api/v1/" + "DownloadType/";
+    path: string =AppSettings.API_ENDPOINT+ "DownloadType/";
 
     constructor(private http: Http) { }
 

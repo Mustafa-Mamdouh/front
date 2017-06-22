@@ -3,9 +3,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { PriceBasis } from './priceBasis.entity';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 @Injectable()
 export class PriceBasisService {
-    path: string = "http://localhost:8082/api/v1/" + "PriceBasis/";
+    path: string = AppSettings.API_ENDPOINT + "PriceBasis/";
 
     constructor(private http: Http) { }
     getall() {

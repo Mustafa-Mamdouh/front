@@ -139,9 +139,50 @@ export class ServiceComponent implements OnInit {
             });
 
     }
+    saveButton() {
+        if (!this.toBeSaved.id)//add
+        {
+            this.addService();
+        }
+        else//edit
+        {
+            this.editService();
+        }
+
+    }
+
+
+    editService() {
+        //Prepare Service
+
+        this.toBeSaved.isactive = this.toBeSaved.isactive + "" == "true" ? "1" : "0";
+        this.toBeSaved.attributeCollection = this.serviceAttributes;
+        this.toBeSaved.componentCollection = this.serviceComponetList;
+        //call add services
+        //console.log(JSON.stringify(this.toBeSaved));
+        this.serviceService.updateService(this.toBeSaved).subscribe(data => {
+            if (data.messageResponseObj.code == "000") {
+                //success
+                if (!this.services.filter(i => i.id == data.service.id)[0])
+                    this.services.push(data.service);
+                else {
+
+                }
+                this.serviceComponetList = new Array<IComponent>();
+                this.serviceAttributes = new Array<IAttribute>();
+                this.toBeSaved = new IService();
+
+            }
+            else {
+                //fail
+
+            }
+        });
+    }
 
     addService() {
         //Prepare Service
+
         this.toBeSaved.isactive = this.toBeSaved.isactive + "" == "true" ? "1" : "0";
         this.toBeSaved.attributeCollection = this.serviceAttributes;
         this.toBeSaved.componentCollection = this.serviceComponetList;
@@ -152,8 +193,8 @@ export class ServiceComponent implements OnInit {
                 //success
                 if (!this.services.filter(i => i.id == data.service.id)[0])
                     this.services.push(data.service);
-                else{
-                   
+                else {
+
                 }
                 this.serviceComponetList = new Array<IComponent>();
                 this.serviceAttributes = new Array<IAttribute>();

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 import { Observable } from "rxjs/Rx";
 interface modifiedReason {
 id:number;
@@ -13,6 +15,7 @@ id:number;
 export class modifyReason {
   options: RequestOptions;
   headers: Headers;
+   path: string = AppSettings.API_ENDPOINT;
 
   constructor(private http: Http) {
 
@@ -22,13 +25,13 @@ export class modifyReason {
 
   getAllReasons(): Observable<any> {
 
-    return this.http.get('http://localhost:8082/reason/all').map((response: Response) => response.json());
+    return this.http.get(this.path+'reason/all').map((response: Response) => response.json());
 
 
   }
 
   getReason(id: number): any {
-    return this.http.get('http://localhost:8082/reason/allModifyReason/' + id).map((response: Response) => response.json());
+    return this.http.get(this.path+'reason/allModifyReason/' + id).map((response: Response) => response.json());
 
 
 
@@ -40,7 +43,7 @@ export class modifyReason {
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.delete('http://localhost:8082/reason/delete/' + id).catch(this.handleError);;
+    return this.http.delete(this.path+'reason/delete/' + id).catch(this.handleError);;
     ;
   }
 
@@ -62,7 +65,7 @@ export class modifyReason {
     }
 
 
-   return this.http.post('http://localhost:8082/reason/add', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'reason/add', x1, this.headers)._catch(this.handleError);
   }
 
 
@@ -76,7 +79,7 @@ export class modifyReason {
     }
 
 
-   return this.http.post('http://localhost:8082/reason/update', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'reason/update', x1, this.headers)._catch(this.handleError);
  
 
   }

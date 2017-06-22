@@ -3,6 +3,8 @@ import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from "rxjs/Rx";
+import { AppSettings } from '../../DomainConfig/AppSetting'
+
 interface serviceMigratio {
 
          
@@ -20,7 +22,7 @@ interface serviceMigratio {
 export class serviceMigration {
   options: RequestOptions;
   headers: Headers;
-
+ path: string = AppSettings.API_ENDPOINT;
   constructor(private http: Http) {
 
 
@@ -29,13 +31,13 @@ export class serviceMigration {
 
   getAllServicesMigration(): Observable<any> {
 
-    return this.http.get('http://localhost:8082/serviceMigration/all').map((response: Response) => response.json());
+    return this.http.get(this.path+'serviceMigration/all').map((response: Response) => response.json());
 
 
   }
 
   getService(id: number): any {
-    return this.http.get('http://localhost:8082/serviceMigration/allServices/' + id).map((response: Response) => response.json());
+    return this.http.get(this.path+'serviceMigration/allServices/' + id).map((response: Response) => response.json());
 
 
 
@@ -46,7 +48,7 @@ export class serviceMigration {
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.delete('http://localhost:8082/serviceMigration/delete/' + id).catch(this.handleError);;
+    return this.http.delete(this.path+'serviceMigration/delete/' + id).catch(this.handleError);;
     ;
   }
 
@@ -70,7 +72,7 @@ export class serviceMigration {
         }
 
 
-   return this.http.post('http://localhost:8082/serviceMigration/add', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'serviceMigration/add', x1, this.headers)._catch(this.handleError);
   }
 
   update(id: number, recid: number,fromserviceid:number,toserviceid:number,requestid:number, serviceid: number):any { 
@@ -86,7 +88,7 @@ export class serviceMigration {
         }
 
 
-   return this.http.post('http://localhost:8082/serviceMigration/update', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'serviceMigration/update', x1, this.headers)._catch(this.handleError);
  
 
 }

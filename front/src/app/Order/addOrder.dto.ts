@@ -23,7 +23,7 @@ export class AddOrderDto {
             attribute.id = attr.id;
             attribute.name = attr.name;
             attribute.type = attr.type;
-            console.log(attr)
+            // console.log(attr)
             if (attr.type == 'Single'&& attr.attributeValueListCollection.length>0) {
                 console.log(attr.attributeValueListCollection[0].value);
                 attribute.value = attr.attributeValueListCollection[0].value;
@@ -33,8 +33,8 @@ export class AddOrderDto {
                     attribute.valueList.push(attrValue.value);
             this.serviceDto.attributesValue.push(attribute);
         }
-        console.log('service dto');
-        console.log(this.serviceDto);
+        // console.log('service dto');
+        // console.log(this.serviceDto);
 
     }
 }

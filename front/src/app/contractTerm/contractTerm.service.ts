@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { AppSettings } from '../DomainConfig/AppSetting'
+
 import { Observable } from "rxjs/Rx";
 interface contractterm {
 
@@ -19,7 +21,7 @@ interface contractterm {
 export class ContractTerm {
   options: RequestOptions;
   headers: Headers;
-
+ path: string = AppSettings.API_ENDPOINT;
   constructor(private http: Http) {
 
 
@@ -28,13 +30,13 @@ export class ContractTerm {
 
   getAllContracts(): Observable<any> {
 
-    return this.http.get('http://localhost:8082/contracts/all').map((response: Response) => response.json());
+    return this.http.get(this.path+'contracts/all').map((response: Response) => response.json());
 
 
   }
 
   getContract(id: number): any {
-    return this.http.get('http://localhost:8082/contracts/allContracts/' + id).map((response: Response) => response.json());
+    return this.http.get(this.path+'contracts/allContracts/' + id).map((response: Response) => response.json());
 
 
 
@@ -46,7 +48,7 @@ export class ContractTerm {
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.delete('http://localhost:8082/contracts/delete/' + id).catch(this.handleError);;
+    return this.http.delete(this.path+'contracts/delete/' + id).catch(this.handleError);;
     ;
   }
 
@@ -72,7 +74,7 @@ export class ContractTerm {
         }
 
 
-   return this.http.post('http://localhost:8082/contracts/add', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'contracts/add', x1, this.headers)._catch(this.handleError);
   }
 
 
@@ -92,7 +94,7 @@ export class ContractTerm {
     }
 
 
-   return this.http.post('http://localhost:8082/contracts/update', x1, this.headers)._catch(this.handleError);
+   return this.http.post(this.path+'contracts/update', x1, this.headers)._catch(this.handleError);
  
 
 }
